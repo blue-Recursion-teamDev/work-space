@@ -1,1 +1,92 @@
+/* Google font */
+@import url('https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap');
+body{
+	background: linear-gradient(#ffddc4, #ffa463);
+    background: -moz-linear-gradient(#ffddc4, #ffa463);
+    background: -webkit-linear-gradient(#ffddc4, #ffa463);
+    font-family: 'Yuji Syuku', serif;
+    color: rgb(222, 79, 27);
+}
 
+/* about.html, developer.htmlのリンクの設定 */
+a {
+    color: rgb(222, 79, 27);
+}
+
+/* about.html, developer.htmlのリンクの設定 */
+a:hover {
+    color: rgb(222, 79, 27);
+    text-decoration: none;
+}
+
+/* リザルト画面の赤枠(外側) */
+.box-outer {
+    display: inline-block;
+    padding: 3px;
+    border: solid 5px red;
+}
+
+/* リザルト画面の赤枠(内側) */
+.box-inner {
+    padding: 5px;
+    border: solid 2px red;
+}
+
+/* リザルト画面の上下の線 */
+.bottom-border {
+    border-bottom: 3px solid rgb(255, 174, 174);
+    padding: 10px;
+}
+
+/* 「©ソフトウェア開発みくじ」用のフォント */
+.default-font {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* おみくじ結果(大吉、吉など)用の文字サイズ */
+.big-text {
+    font-size: 72px;
+}
+
+/* 以下、アニメーション用のCSS */
+.fade-in {
+    animation-name: fadeInAnime;
+    animation-fill-mode:backwards;
+    animation-duration:3s;
+    animation: iteration count 0;
+    animation-timing-function:ease;
+    animation-delay: 0.5s;
+    animation-direction:normal;
+}
+    
+@keyframes fadeInAnime{
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  } 
+
+.animation{
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-duration: 0.75s;
+    width: 128px;
+}
+    
+.keyframe0{
+    animation-name: anim_po;
+    position: absolute;
+}
+    
+@keyframes anim_po {
+    0% {
+        top: 30%;
+    }
+    100% {
+        top: 50%
+    }
+}   
