@@ -48,6 +48,12 @@ a:hover {
     font-size: 72px;
 }
 
+/* おみくじ結果用の画像サイズ */
+.img-size {
+    width: 100%;
+    height: auto;
+}
+
 /* 以下、アニメーション用のCSS */
 .fade-in {
     animation-name: fadeInAnime;
