@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <div class="container min-vh-100 d-flex align-items-center justify-content-center">
+            <div id="result" class="col-4 scroll-bar">
+                <div class="box-outer bg-white col-12 my-5">
+                    <div class="box-inner">
+                        <p class="text-center mt-3">このおみくじについて</p>
+                            <div class="d-flex justify-content-center mr-2">
+                                <ul>
+                                    <li><p>このおみくじは、コンピュータ・サイエンスの学習プラットフォーム<a href="https://recursionist.io/" target="_blank">Recursion</a>で開催されているイベント「チーム開発体験会」の課題として制作されたものです。</p></li>
+                                    <li><p>あなたのソフトウェア開発の行方を占います。</p></li>
+                                    <li><p>「チーム開発体験会」が催される度におみくじの種類が増えてゆきますので、納得しかねるおみくじを引いてしまっても懲りずにまた引きに来るのが吉です。</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <div class="d-flex justify-content-center py-3">
+                    <input id="restart" type="button" class="btn btn-danger rounded-pill" value="戻る" onclick="location.href='./index.html'">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <p class="default-font">©ソフトウェア開発みくじ</p>
+                </div>
+            </div>
+        </div> 
+    </main>
+</body>
+</html>
