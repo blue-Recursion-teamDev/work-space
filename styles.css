@@ -54,6 +54,18 @@ a:hover {
     height: auto;
 }
 
+/* omikuji.pngのぼかし */
+.omikuji-img-shadow {      
+    filter: drop-shadow(0 0 20px rgb(255, 255, 255));
+}
+
+/* スクロールバーの設定 */
+.scroll-bar {
+    /* height: 100vh; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 /* 以下、アニメーション用のCSS */
 .fade-in {
     animation-name: fadeInAnime;
