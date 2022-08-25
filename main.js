@@ -91,47 +91,58 @@ function getRandomInt(max) {
 	return Math.floor(Math.random() * max);
 }
 
-function sleep(waitSec, callbackFunc) {
-    var spanedSec = 0;
-    var id = setInterval(function () {
-        spanedSec++;
-        if (spanedSec >= waitSec) {
-            clearInterval(id);
-            if (callbackFunc) callbackFunc();
-        }
-    }, 1000);
+class Screen {
+	#init;
+	#loading;
+	#result;
+
+	constructor() {
+		this.#init = document.getElementById('init');
+		this.#loading = document.getElementById('loading');
+		this.#result = document.getElementById('result');
+	}
+
+	isDisplayedInitScreen() {
+		return !this.#init.classList.contains("d-none");
+	}
+
+	toLoadingScreen() {
+		this.#init.classList.add("d-none");
+		this.#loading.classList.remove("d-none");
+	}
+
+	toInitialScreen() {
+		this.#init.classList.remove("d-none");
+		this.#result.classList.add("d-none");
+	}
+
+	toResultScreen() {
+		this.#loading.classList.add("d-none");
+		this.#result.classList.remove("d-none");
+	}
+
+	resetScreen() {
+		this.#result.scrollTop = 0;
+	}
 }
 
-function toResultScreen(){
-    let init = document.getElementById('init');
-    let loading = document.getElementById('loading');
-    let result = document.getElementById('result');
-    init.classList.add("d-none");
-    loading.classList.remove("d-none")
+const sleep = ms => new Promise(res => setTimeout(res, ms));
 
-    Worshiper.drawOmikuji();
-
-    sleep(3, function(){
-        loading.classList.add("d-none");
-        result.classList.remove("d-none")  
-    })
+async function buttonOnClick() {
+	screen = new Screen();
+	if(screen.isDisplayedInitScreen()){
+		screen.toLoadingScreen();
+		Worshiper.drawOmikuji();
+		await sleep(3000);
+		screen.toResultScreen();
+	} else {
+		screen.resetScreen();
+		screen.toInitialScreen();
+	}
 }
 
-function toInitialScreen(){
-	resetScreen();
-    let init = document.getElementById('init');
-    let result = document.getElementById('result');
-    init.classList.remove("d-none");
-    result.classList.add("d-none")
-}
+const startButton = document.getElementById('start');
+startButton.addEventListener("click", buttonOnClick);
 
-function resetScreen() {
-	let resultScreen = document.getElementById("result");
-	resultScreen.scrollTop = 0;
-}
-
-let startButton = document.getElementById('start');
-startButton.onclick = toResultScreen;
-
-let restartButton = document.getElementById('restart');
-restartButton.onclick = toInitialScreen;
+const restartButton = document.getElementById('restart');
+restartButton.addEventListener("click", buttonOnClick);
