@@ -12,34 +12,46 @@ class omikujiObject {
 class God {
 	static unseiImgDictionary = {
 		"大吉": "img/daikiti.png",
+		"末吉": "img/suekiti.png",
 		"凶": "img/kyou.png"
 	}
 
 	static unseiList = [
 		"大吉",
+		"末吉",
 		"凶",
 	]
 
 	static explanationDictionary = {
 		"大吉": ["comment1", "comment2"],
-		"凶": ["comment3", "comment4"]
+		"末吉": ["関わっているプロジェクトから何だか香ばしい匂いがします。炎上する前になんとか逃げるのが吉。", "リリース直前に致命的なバグが見つかるでしょう。お泊まりの準備をして出社するのが吉。"],
+		"凶": ["リリースしたソフトウェアに致命的な欠陥が見つかり、それが原因で顧客の機密情報が派手に流出します。仕様で押し通すにはいささか無理がありますので、潔く腹をくくりましょう。", "前任者から引き継いだコードがスパゲティ状態です。残念ながらあなたの力ではどうにもならないので、せめて自分はこんなコードを書かないように今後の糧にしましょう。"]
 	}
 
 	static luckyLanguageList = [
 		"C",
-		"Jave",
+		"C++",
+		"C♯",
+		"Java",
+		"JavaScript",
+		"PHP",
 		"Python",
-		"Ruby"
+		"Ruby",
+		"TypeScript"
 	]
 	
 	static luckyDatabaseList = [
 		"MySQL",
+		"Oracle Database",
 		"PostgreSQL"
 	]
 	
 	static luckyEditorList = [
 		"Atom",
-		"VSCode"
+		"Emacs",
+		"nano",
+		"Vim",
+		"Visual Studio Code"
 	]
 	
 	static generateOmikuji(num) {
@@ -61,7 +73,7 @@ class God {
 	}
 }
 
-const omikujiList = God.generateOmikuji(10);
+const omikujiList = God.generateOmikuji(30);
 
 class Worshiper {
 	static drawOmikuji() {
