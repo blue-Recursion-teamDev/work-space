@@ -141,23 +141,87 @@ class Screen {
 	}
 }
 
+class Cookie {
+
+	static getElement(element) {	
+		let cookies = document.cookie;
+		let cookiesArray = cookies.split("; ");	
+		for (let cookie of cookiesArray) {
+			let cookieArray = cookie.split('=');
+			if (cookieArray[0] == element) {
+				return cookieArray[1];
+			}
+		}
+		return ""
+	}
+
+	static deleteElement(element) {
+		document.cookie = element + '=; max-age=0;';
+	}
+
+	static addElement(element, value) {
+		document.cookie = element + "=" + value;
+	}
+}
+
+
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 async function buttonOnClick() {
 	screen = new Screen();
+	let userName;
+	let unsei;
 	if(screen.isDisplayedInitScreen()){
 		screen.toLoadingScreen();
 		Worshiper.drawOmikuji();
+		userName = document.getElementById("inputUserName").value;
+		unsei = document.getElementById("unsei").innerHTML;
+		Cookie.addElement("userName", userName);
+		Cookie.addElement("unsei", unsei);
 		await sleep(3000);
 		screen.toResultScreen();
 	} else {
+		let nameForm = document.getElementById("nameForm");
+		let displayUserName = document.getElementById("displayUserName");
+		nameForm.classList.add("d-none");
+		userName = Cookie.getElement("userName");
+		unsei = Cookie.getElement("unsei");
+		displayUserName.innerHTML = "前回の" + userName + "さんの運勢 : " + unsei;
 		screen.resetScreen();
 		screen.toInitialScreen();
 	}
 }
+
+
+function getUserName() {
+	let cookies = document.cookie;
+	let cookiesArray = cookies.split("; ");
+	
+	for (let cookie of cookiesArray) {
+		let cookieArray = cookie.split('=');
+		if (cookieArray[0] == "userName") return cookieArray[1];
+	}
+	return ""
+}
+
 
 const startButton = document.getElementById('start');
 startButton.addEventListener("click", buttonOnClick);
 
 const restartButton = document.getElementById('restart');
 restartButton.addEventListener("click", buttonOnClick);
+
+let cookies = document.cookie;
+console.log(cookies);
+console.log(getUserName());
+if (getUserName() != "") {
+	let inputUserName = document.getElementById("inputUserName");
+	let displayUserName = document.getElementById("displayUserName");
+	inputUserName.classList.add("d-none");
+	userName = Cookie.getElement("userName");
+	unsei = Cookie.addElement("unsei");
+	displayUserName.innerHTML = "前回の" + userName + "さんの運勢 : " + unsei;
+}
+
+Cookie.deleteElement("userName");
+Cookie.deleteElement("unsei");
