@@ -54,6 +54,11 @@ a:hover {
     height: auto;
 }
 
+/* 全体サイズの固定 */
+.bg-size {
+    width: 300px;
+}
+
 /* omikuji.pngのぼかし */
 .omikuji-img-shadow {      
     filter: drop-shadow(0 0 20px rgb(255, 255, 255));
