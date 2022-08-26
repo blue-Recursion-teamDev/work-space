@@ -13,6 +13,8 @@ class God {
 	static unseiImgDictionary = {
 		"大吉": "img/daikiti_ooyorokobi.png",
 		"吉": "img/kiti.png",
+		"中吉": "img/chukichi.png",
+		"小吉": "img/shokichi.png",
 		"末吉": "img/suekiti.png",
 		"凶": "img/kyou.png"
 	}
@@ -20,6 +22,8 @@ class God {
 	static unseiList = [
 		"大吉",
 		"吉",
+		"中吉",
+		"小吉",
 		"末吉",
 		"凶",
 	]
@@ -27,6 +31,8 @@ class God {
 	static explanationDictionary = {
 		"大吉": ["GitHub Sponsors を通じて太っ腹なスポンサーがつきます。これであなたの OSS 開発は安泰です!!", "リリースしたソフトウェアにバグが見つかりますが、再現性が低いためユーザーも上司も誰ひとり気付かないでしょう。見なかったことにするのが吉。"],
 		"吉":["リファクタリングに成功してプログラムが爆速に!!サクサク動いて気持ちいいーーー!!", "リリースしたソフトウェアにバグが見つかりますが、幸いユーザー企業のお偉方は極度のITオンチです。仕様で押し通すのが吉。"],
+		"中吉":["リリースしたソフトウェアに深刻なバグが見つかりますが、口八丁な営業のお陰で事無きを得るでしょう。ただし、後日それを理由に無茶振りされるおそれがあるので油断は禁物です。", "git でコンフリクトが発生します!! が、今回は上手く解消できるでしょう。今回は・・"],
+		"小吉":["開発の要件定義が綿飴のようにふわっふわです。手遅れにならないうちに手を打っておくのが吉。", "リリース前のソフトウェアにバグが見つかります。貴方のお勤め先が上流の企業ならばそれほど大きな問題にはなりませんが、三次請けよりも下流の場合はご愁傷様でございます。"],
 		"末吉": ["関わっているプロジェクトから何だか香ばしい匂いがします。炎上する前になんとか逃げるのが吉。", "リリース直前に致命的なバグが見つかるでしょう。お泊まりの準備をして出社するのが吉。"],
 		"凶": ["リリースしたソフトウェアに致命的な欠陥が見つかり、それが原因で顧客の機密情報が派手に流出します。仕様で押し通すにはいささか無理がありますので、潔く腹をくくりましょう。", "前任者から引き継いだコードがスパゲティ状態です。残念ながらあなたの力ではどうにもならないので、せめて自分はこんなコードを書かないように今後の糧にしましょう。"]
 	}
@@ -164,46 +170,34 @@ class Cookie {
 	}
 }
 
-
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 async function buttonOnClick() {
-	screen = new Screen();
-	let userName;
-	let unsei;
-	if(screen.isDisplayedInitScreen()){
-		screen.toLoadingScreen();
-		Worshiper.drawOmikuji();
-		userName = document.getElementById("inputUserName").value;
-		unsei = document.getElementById("unsei").innerHTML;
-		Cookie.addElement("userName", userName);
-		Cookie.addElement("unsei", unsei);
-		await sleep(3000);
-		screen.toResultScreen();
-	} else {
-		let nameForm = document.getElementById("nameForm");
-		let displayUserName = document.getElementById("displayUserName");
-		nameForm.classList.add("d-none");
-		userName = Cookie.getElement("userName");
-		unsei = Cookie.getElement("unsei");
-		displayUserName.innerHTML = "前回の" + userName + "さんの運勢 : " + unsei;
-		screen.resetScreen();
-		screen.toInitialScreen();
+	let userName = Cookie.getElement("userName");
+	if (userName == "") userName = document.getElementById("inputUserName").value;
+	if (userName == "") window.alert("名前を入力してください");
+	else {
+		screen = new Screen();
+		if(screen.isDisplayedInitScreen()){
+			screen.toLoadingScreen();
+			Worshiper.drawOmikuji();
+			const unsei = document.getElementById("unsei").innerHTML;
+			Cookie.addElement("userName", userName);
+			Cookie.addElement("unsei", unsei);
+			await sleep(3000);
+			screen.toResultScreen();
+		} else {
+			let nameForm = document.getElementById("nameForm");
+			let displayUserName = document.getElementById("displayUserName");
+			
+			nameForm.classList.add("d-none");
+			unsei = Cookie.getElement("unsei");
+			displayUserName.innerHTML = "前回の" + userName + "さんの運勢 : " + unsei;
+			screen.resetScreen();
+			screen.toInitialScreen();
+		}
 	}
 }
-
-
-function getUserName() {
-	let cookies = document.cookie;
-	let cookiesArray = cookies.split("; ");
-	
-	for (let cookie of cookiesArray) {
-		let cookieArray = cookie.split('=');
-		if (cookieArray[0] == "userName") return cookieArray[1];
-	}
-	return ""
-}
-
 
 const startButton = document.getElementById('start');
 startButton.addEventListener("click", buttonOnClick);
@@ -212,14 +206,13 @@ const restartButton = document.getElementById('restart');
 restartButton.addEventListener("click", buttonOnClick);
 
 let cookies = document.cookie;
-console.log(cookies);
-console.log(getUserName());
-if (getUserName() != "") {
-	let inputUserName = document.getElementById("inputUserName");
+// console.log(cookies);
+userName = Cookie.getElement("userName");
+unsei = Cookie.getElement("unsei");
+if (userName != "" && unsei != "") {
+	let nameForm = document.getElementById("nameForm");
 	let displayUserName = document.getElementById("displayUserName");
-	inputUserName.classList.add("d-none");
-	userName = Cookie.getElement("userName");
-	unsei = Cookie.addElement("unsei");
+	nameForm.classList.add("d-none");
 	displayUserName.innerHTML = "前回の" + userName + "さんの運勢 : " + unsei;
 }
 
