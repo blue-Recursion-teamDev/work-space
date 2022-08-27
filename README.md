@@ -19,6 +19,12 @@ Press the "おみくじを引く" button to read your fortune.
 
 https://user-images.githubusercontent.com/91725975/187017519-47ade1e7-1b4c-4065-bbd8-5a334f5a375b.mov
 
+## Note
+
+推奨ブラウザはGoogle ChromeとFirefoxです。Safariでは前回の運勢が表示されません。
+
+Recommended browsers are Google Chrome and Firefox. Safari does not display the last fortune.
+
 ## Author
 * [Hayato-Kossy](https://github.com/Hayato-Kossy)
 * [juice12345678](https://github.com/juice12345678)
