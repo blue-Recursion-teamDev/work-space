@@ -1,1 +1,86 @@
-
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container min-vh-100 d-flex align-items-center justify-content-center">
+        <!-- 初期画面 -->
+        <div id="init" class="init-bg-size">
+            <div class="">
+                <h1 class="text-center">ソフトウェア開発<br>みくじ</h1>
+            </div>
+            <div class="d-flex justify-content-center">
+                <img class="col-5 col-sm-3 omikuji-img-shadow" src="img\omikuji.png" alt="おみくじ">
+            </div>
+            <div class="d-flex justify-content-center">
+                <form id="nameForm" class="">
+                    <div class="mb-2 col-12">
+                        <label class="form-label" for="name">名前:</label>
+                        <input class="form-control text-center" type="text" name="name" id="inputUserName">
+                    </div>
+                </form>
+                <div class="mt-3">
+                    <p id="displayUserName" class="text-center"></p>
+                </div>
+            </div>
+            <div class="p-2 d-flex justify-content-center">
+                <input id="start" type="button" class="btn btn-danger rounded-pill" value="おみくじを引く">
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="p-2">
+                    <p><a href="about.html">このおみくじについて</a>|<a href="developers.html">開発者一覧</a>
+                    </a></p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <p class="default-font">©ソフトウェア開発みくじ</p>
+            </div>
+        </div>
+        <!-- ローディング画面(入れなくても大丈夫です) -->
+        <img id="loading" class="col-3 animation keyframe0 d-none" src="img\omikuji.png" alt="おみくじ">
+        <!-- リザルト画面 -->
+        <div id="result" class="result-bg-size vh-100 scroll-bar d-none">
+            <div class="box-outer bg-white my-5">
+                <div class="box-inner">
+                    <div class="bottom-border d-flex justify-content-center">
+                        <h5 class="text-center">ソフトウェア開発みくじ</h4>
+                    </div>
+                    <div class="bottom-border">
+                        <div class="d-flex justify-content-center">
+                            <img class="fade-in img-size" id="unsei_img">
+                        </div>
+                        <div>
+                            <p class="text-center big-text fade-in" id="unsei"></p>
+                        </div>
+                    </div>
+                    <div class="bottom-border d-flex justify-content-center">
+                        <p class="fade-in" id="explanation"></p>
+                    </div>
+                    <div class="bottom-border py-1">
+                        <p class="text-center ">✿ラッキー言語✿</p>
+                        <h4 class="text-center fade-in" id="lucky_language"></h4>
+                    </div>
+                    <div class="bottom-border py-1">
+                        <p class="text-center">✿ラッキーデータベース✿</p>
+                        <h4 class="text-center fade-in" id="lucky_database"></h4>
+                    </div>
+                    <div class="py-1">
+                        <p class="text-center">✿ラッキーエディター✿</p>
+                        <h4 class="text-center fade-in" id="lucky_editor"></h4>
+                    </div>
+                    <div class="d-flex justify-content-center py-3">
+                        <input id="restart" type="button" class="btn btn-danger rounded-pill" value="もう一度おみくじを引く">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
