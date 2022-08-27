@@ -55,8 +55,12 @@ a:hover {
 }
 
 /* 全体サイズの固定 */
-.bg-size {
+.result-bg-size {
     width: 320px;
+}
+
+.init-bg-size {
+    width: 500px;
 }
 
 /* omikuji.pngのぼかし */
